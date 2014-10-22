@@ -7,14 +7,14 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
         <script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script> 
         <!-- TWITTER BOOTSTRAP CSS --> 
-        <link href="http://127.0.0.1/codeigniter/application/views/css/bootstrap.css" rel="stylesheet" type="text/css"/>  
-        <link href="http://127.0.0.1/codeigniter/application/views/css/estilo.css" rel="stylesheet" type="text/css"/>         
+        <link href="http://127.0.0.1/homebankxx/application/views/css/bootstrap.css" rel="stylesheet" type="text/css"/>  
+        <link href="http://127.0.0.1/homebankxx/application/views/css/estilo.css" rel="stylesheet" type="text/css"/>         
         <!-- TWITTER BOOTSTRAP JS --> 
-        <script src="http://127.0.0.1/codeigniter/application/views/jquery/js/bootstrap.min.js"></script> 
-        <link href="http://127.0.0.1/codeigniter/application/views/jquery/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet" type="text/css"/>
-        <script type="text/javascript" src="http://127.0.0.1/codeigniter/application/views/jquery/js/jquery-1.9.1.js"></script>
-        <script type="text/javascript" src="http://127.0.0.1/codeigniter/application/views/jquery/js/jquery-ui.js"></script>
-        <script type="text/javascript" src="http://127.0.0.1/codeigniter/application/views/jquery/js/jquery.maskMoney.js"></script>
+        <script src="http://127.0.0.1/homebankxx/application/views/jquery/js/bootstrap.min.js"></script> 
+        <link href="http://127.0.0.1/homebankxx/application/views/jquery/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="http://127.0.0.1/homebankxx/application/views/jquery/js/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="http://127.0.0.1/homebankxx/application/views/jquery/js/jquery-ui.js"></script>
+        <script type="text/javascript" src="http://127.0.0.1/homebankxx/application/views/jquery/js/jquery.maskMoney.js"></script>
         <script type="text/javascript">
             $(document).ready(function(e) {
                 $("#datepicker").datepicker({
