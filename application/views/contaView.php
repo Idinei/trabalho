@@ -10,10 +10,10 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
         <script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script> 
         <!-- TWITTER BOOTSTRAP CSS --> 
-        <link href="http://127.0.0.1/homebankxx/Trabalho/application/views/css/bootstrap.css" rel="stylesheet" type="text/css"/>  
-        <link href="http://127.0.0.1/homebankxx/Trabalho/application/views/css/estilo.css" rel="stylesheet" type="text/css"/>
+        <link href="http://127.0.0.1/homebankxx/application/views/css/bootstrap.css" rel="stylesheet" type="text/css"/>  
+        <link href="http://127.0.0.1/homebankxx/application/views/css/estilo.css" rel="stylesheet" type="text/css"/>
         <!-- TWITTER BOOTSTRAP JS --> 
-        <script src="http://127.0.0.1/homebankxx/Trabalho/application/views/jquery/js/bootstrap.min.js"></script> 
+        <script src="http://127.0.0.1/homebankxx/application/views/jquery/js/bootstrap.min.js"></script> 
 
 
     </head>

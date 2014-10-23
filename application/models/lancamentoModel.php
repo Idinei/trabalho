@@ -7,12 +7,12 @@ class lancamentoModel extends CI_Model{
     function listarTudo($limite = 100, $start = 0){
         $this->db->limit($limite, $start);
         $this->db->select('lancamento.id,lancamento.data, '
-                . 'lancamento.conta_codigo, lancamento.tipo, lancamento.descricao, lancamento.valor, lancamento.at_lancamento, conta.cancelada');
+                . 'lancamento.conta_codigo, lancamento.valor, lancamento.at_lancamento');
         $this->db->from('lancamento');
         
         if($this->uri->segment(3)){
             $this->db->join('conta', 'conta.id = lancamento.conta_codigo'
-                    .' and conta.codigo = '. $this->uri->segment(3));
+                    .' and conta.id = '. $this->uri->segment(3));
         }else{
             $this->db->join('conta', ' conta.id = lancamento.conta_codigo');
         }
@@ -22,7 +22,7 @@ class lancamentoModel extends CI_Model{
     }
     function contarTudo(){
         $this->db->select('lancamento.id, lancamento.data, lancamento.conta_codigo, '
-                . 'lancamento.tipo, lancamento.descricao, lancamento.valor, lancamento.at_lancamento');
+                . 'lancamento.valor, lancamento.at_lancamento');
         $this->db->from('lancamento');
 
         if ($this->uri->segment(3)) {
@@ -80,12 +80,8 @@ class lancamentoModel extends CI_Model{
         if(isset($dados['conta_codigo'])){
             $this->db->set('conta_codigo', $dados['conta_codigo']);
         }
-        if(isset($dados['tipo'])){
-            $this->db->set('tipo', $dados['tipo']);
-        }
-        if(isset($dados['descricao'])){
-            $this->db->set('descricao', $dados['descricao']);
-        }
+        
+        
         if(isset($dados['valor'])){
             $this->db->set('valor', $dados['valor']);
         }

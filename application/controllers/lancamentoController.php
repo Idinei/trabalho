@@ -37,7 +37,7 @@ class lancamentoController extends CI_Controller {
         $dados['titulo'] = "Cadastro de Lançamentos";
         $dados['lancamentos'] = $this->lancamentoModel->listarTudo();
         $dados['contas'] = $this->listar_contas();
-        $dados['tipos'] = $this->tipo();
+//        $dados['tipos'] = $this->tipo();
 //        $dados['atualizado'] = $this->at_lancamento();
         if ($this->uri->segment(3)) {
             $dados['lancamentoAtual'] = $this->uri->segment(3);
@@ -51,8 +51,8 @@ class lancamentoController extends CI_Controller {
             'id' => $this->input->post('codigo'),
             'data' => $this->input->post('data'),
             'conta_codigo' => $this->input->post('conta_codigo'),
-            'tipo' => $this->input->post('tipo'),
-            'descricao' => $this->input->post('descricao'),
+//            'tipo' => $this->input->post('tipo'),
+//            'descricao' => $this->input->post('descricao'),
             'valor' => $this->input->post('valor'),
             'at_lancamento' => 'N',
         );
@@ -61,15 +61,13 @@ class lancamentoController extends CI_Controller {
         $this->load->model('contaModel');
         $this->load->model('lancamentoModel');
         $conta = $this->contaModel->buscar_pelo_codigo($inf['conta_codigo']);
-        if ($conta->cancelada == 'S') {
-            $this->session->set_flashdata('msg', 'Não é possível inserir lançamento em uma conta cancelada!');
-        } else {
+        
             if ($this->lancamentoModel->inserir($inf)) {
                 $inf['acao'] = 'I';
                 $this->alterarSaldo($inf);
                 $this->session->set_flashdata('msg', 'Criado com sucesso!');
             }
-        }
+        
         redirect('lancamentoController/index/' . $_POST['conta_codigo']);
     }
 
@@ -95,13 +93,13 @@ class lancamentoController extends CI_Controller {
             }
         } else { //exclusao
             if ($inf['tipo'] == 'C') {
-                $saldo -= $inf['valor'];
+                $saldo += $inf['valor'];
             } else {
                 $saldo += $inf['valor'];
             }
         }
 //        $this->lancamentoModel->gravarMovimento($lancamento, $codigo->codigo);
-        $this->contaModel->gravarSaldo($conta->codigo, $saldo);
+        $this->contaModel->gravarSaldo($conta->id, $saldo);
     }
 
     function listar_contas() {
@@ -109,7 +107,7 @@ class lancamentoController extends CI_Controller {
         $contas = $this->contaModel->listarTudo2();
         $lista = array();
         foreach ($contas as $c) {
-            $lista[$c->id];
+            $lista[$c->id] = "$c->id";
         }
         return $lista;
     }
@@ -123,7 +121,7 @@ class lancamentoController extends CI_Controller {
         foreach ($movimento as $m) {
             $inf['acao'] = 'I';
             $inf['data'] = date('Y-m-d');
-            $inf['tipo'] = $m->tipo;
+//            $inf['tipo'] = $m->tipo;
             $inf['valor'] = $m->valor;
             $inf['conta_codigo'] = $conta;
             $inf['at_lancamento'] = $m->at_lancamento;
@@ -145,7 +143,7 @@ class lancamentoController extends CI_Controller {
         $this->load->model('lancamentoModel');
         $dados['titulo'] = "Alteração de Lançamento";
         $dados['contas'] = $this->listar_contas();
-        $dados['tipos'] = $this->tipo();
+//        $dados['tipos'] = $this->tipo();
         if ($this->uri->segment(3)) {
             $dados['lancamentoAtual'] = $this->uri->segment(3);
         }
@@ -156,15 +154,13 @@ class lancamentoController extends CI_Controller {
         $this->form_validation->set_rules('id', 'id', 'trim');
         $this->form_validation->set_rules('data', 'data', 'trim');
         $this->form_validation->set_rules('conta_codigo', 'conta_codigo', 'trim');
-        $this->form_validation->set_rules('tipo', 'tipo', 'trim');
+//        $this->form_validation->set_rules('tipo', 'tipo', 'trim');
         $this->form_validation->set_rules('descricao', 'descricao', 'trim');
         $this->form_validation->set_rules('valor', 'valor', 'trim');
         $this->form_validation->set_rules('at_lancamento', 'at_lancamento', 'trim');
         if ($this->form_validation->run()) {
             $conta = $this->contaModel->buscar_pelo_codigo($_POST['conta_codigo']);
-            if ($conta->cancelada == 'S') {
-                $this->session->set_flashdata('msg', 'Não é possível alterar lançamento em uma conta cancelada!');
-            } else {
+            
                 $_POST['id'] = $codigo;
                 $_POST['data'] = implode('-', array_reverse(explode('/', $_POST['data'])));
 
@@ -174,7 +170,7 @@ class lancamentoController extends CI_Controller {
                     $this->session->set_flashdata('msg', 'Alterado com sucesso!');
                     redirect('lancamentoController/index/' . $_POST['conta_codigo']);
                 }
-            }
+            
         }
         $this->load->view('lancamentoUpdateView', $dados);
     }
@@ -187,7 +183,7 @@ class lancamentoController extends CI_Controller {
         } else {
             if ($this->lancamentoModel->eliminar()) {
                 $inf['conta_codigo'] = $lanc->conta_codigo;
-                $inf['tipo'] = $lanc->tipo;
+//                $inf['tipo'] = $lanc->tipo;
                 $inf['valor'] = $lanc->valor;
                 $inf['acao'] = 'E';
                 $this->alterarSaldo($inf);

@@ -10,10 +10,10 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
         <script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script> 
         <!-- TWITTER BOOTSTRAP CSS --> 
-        <link href="http://127.0.0.1/codeigniter/application/views/css/bootstrap.css" rel="stylesheet" type="text/css"/>  
-        <link href="http ://127.0.0.1/codeigniter/application/views/css/estilo.css" rel="stylesheet" type="text/css"/>
+        <link href="http://127.0.0.1/homebankxx/application/views/css/bootstrap.css" rel="stylesheet" type="text/css"/>  
+        <link href="http ://127.0.0.1/homebankxx/application/views/css/estilo.css" rel="stylesheet" type="text/css"/>
         <!-- TWITTER BOOTSTRAP JS --> 
-        <script src="http://127.0.0.1/codeigniter/application/views/jquery/js/bootstrap.min.js"></script> 
+        <script src="http://127.0.0.1/homebankxx/application/views/jquery/js/bootstrap.min.js"></script> 
 
         <style type="text/css">
             .center{
@@ -113,23 +113,20 @@
                             <?php
                         }
 
-                        $this->table->set_heading('Código', 'Data', 'Conta_código', 'Tipo', 'Descrição', 'Valor', 'S_atualizado', 'Ações');
+                        $this->table->set_heading('Código', 'Data', 'Conta_código', 'Valor', 'S_atualizado', 'Ações');
                         foreach ($lancamentos as $l) {
-                            if ($l->cancelada == 'S') {
-                                $link_alterar = "";
-                                $link_eliminar = "";
-                            } else {
-                                $link_alterar = anchor("lancamentoController/alterar_lancamento/$l->codigo", '<img src="http://127.0.0.1/codeigniter/application/views/img/edit.png">');
-                                $link_eliminar = anchor("lancamentoController/eliminar_lancamento/$l->codigo", '<img src="http://127.0.0.1/codeigniter/application/views/img/del.png">');
+                            
+                                $link_alterar = anchor("lancamentoController/alterar_lancamento/$l->id", '<img src="http://127.0.0.1/homebankxx/application/views/img/edit.png">');
+                                $link_eliminar = anchor("lancamentoController/eliminar_lancamento/$l->id", '<img src="http://127.0.0.1/homebankxx/application/views/img/del.png">');
 //            $link_lancamento = anchor("lancamentoController/index/$p->codigo", "Listar Lançamento");
-                            }
+                            
                             $data = implode('/', array_reverse(explode('-', $l->data)));
-                            $this->table->add_row($l->codigo, $data, $l->conta_codigo, $l->tipo, $l->descricao, $l->valor, $l->at_lancamento, "$link_alterar $link_eliminar");
+                            $this->table->add_row($l->id, $data, $l->conta_codigo, $l->valor, $l->at_lancamento, "$link_alterar $link_eliminar");
                         }
                         ?>
                         <div id="menu">
                             <ul class="nav nav-tabs nav-stacked"> 
-                                <li><?php echo anchor("lancamentoController/novo", '<img src="http://127.0.0.1/codeigniter/application/views/img/novo.png">'); ?></li>                       
+                                <li><?php echo anchor("lancamentoController/novo", '<img src="http://127.0.0.1/homebankxx/application/views/img/novo.png">'); ?></li>                       
                             </ul>
 <!--                            <ul class="nav nav-tabs nav-stacked movimento"> 
                                 <li><?php echo anchor("contaController/index/$l->conta_codigo", 'Lista contas'); ?></li>                       
