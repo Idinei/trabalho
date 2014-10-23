@@ -9,7 +9,7 @@ class acessoModel extends CI_Model {
     }
 
     function inserir_acesso($inf = array()) {
-        $this->db->insert('acessos', $inf);
+        $this->db->insert('acesso', $inf);
         return $this->db->affected_rows();
     }
     
@@ -18,7 +18,7 @@ class acessoModel extends CI_Model {
         $this->db->where('erro', 'S');
         $this->db->where('datahora >= ', date('Y-m-d').' 00:00:00');
         $this->db->where('datahora <= ', date('Y-m-d').' 23:59:59');
-        $this->db->from('acessos');
+        $this->db->from('acesso');
         $this->db->get('usuario');
         return $this->db->affected_rows();
     }

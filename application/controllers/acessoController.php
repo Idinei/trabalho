@@ -12,7 +12,7 @@ class acessoController extends CI_Controller {
         $usu = $this->acessoModel->valida_usuario($_POST);
 
         if ($usu->nome != "") {
-            if ($usu->senha == $_POST ['senha']) {
+            if ($usu->senha == $_POST ['senha'] && $usu->conta == $_POST ['conta'] &&($usu->numero_agencia == $_POST ['numero_agencia'])) {
                 if ($usu->inativo == 'S') {
                     echo 'Usuario Inativo';
                 } else {
@@ -20,7 +20,7 @@ class acessoController extends CI_Controller {
                     $this->session->set_flashdata('usuario_codigo', $usu->codigo);
                     $this->inserir_acesso('N', $usu);
                     echo 'conectou';
-                    redirect('usuarioController'); 
+                    redirect('contaController'); 
                 }
             } else {
                 $this->erro_acesso($usu);
@@ -49,7 +49,7 @@ class acessoController extends CI_Controller {
         $this->session->set_flashdata('msg', 'Usuario ou senha inválidos');
         if ($this->acessoModel->buscar_erros($usu->codigo) >= 3) {
             $this->acessoModel->bloquear($usu->codigo);
-            echo 'Você errou mais de três vezes. Usuário Inativo!';
+            echo 'Sua conta foi bloqueada, procure a agência mais próxima';
         }
         $this->load->view('acessoView');
     }

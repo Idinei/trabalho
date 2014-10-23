@@ -42,15 +42,14 @@
                         }
                         echo form_open('acessoController/faca_login'); //isenrir_pessoa
                         echo form_fieldset('Faça o seu Login');//conta
-                        echo form_label("Conta: ");
-                        echo form_input('conta', '', 'size="50" class="campo" required');
-                        echo br();
-                        echo br();
                         echo form_label("Número da Agência: ");
                         echo form_input('numero_agencia', '', 'size="50" class="campo" required');
                         echo br();
                         echo br();
-
+                        echo form_label("Conta: ");
+                        echo form_input('conta', '', 'size="50" class="campo" required');
+                        echo br();
+                        echo br();
                         echo form_label("Senha: ");
                         echo form_password('senha', '', 'size="10" class="campo" ');
                         echo br();
