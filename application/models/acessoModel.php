@@ -4,7 +4,7 @@ class acessoModel extends CI_Model {
 
     function valida_usuario($dados = array()) {
         $this->db->where('conta', $dados['conta']);
-        $query = $this->db->get('usuario');
+        $query = $this->db->get('usuarios');
         return $query->row(0);
     }
 
@@ -19,14 +19,14 @@ class acessoModel extends CI_Model {
         $this->db->where('datahora >= ', date('Y-m-d').' 00:00:00');
         $this->db->where('datahora <= ', date('Y-m-d').' 23:59:59');
         $this->db->from('acesso');
-        $this->db->get('usuario');
+        $this->db->get();
         return $this->db->affected_rows();
     }
     
     function bloquear($usuario_codigo){
         $this->db->set('inativo', 'S');
         $this->db->where('codigo', $usuario_codigo);
-        $this->db->update('usuario');
+        $this->db->update('usuarios');
         return $this->db->affected_rows();
         
     }
