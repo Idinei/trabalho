@@ -1,4 +1,6 @@
 <?php
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');{
+    
 
 class acessoModel extends CI_Model {
 
@@ -31,6 +33,7 @@ class acessoModel extends CI_Model {
         
     }
 
+}
 }
 
 

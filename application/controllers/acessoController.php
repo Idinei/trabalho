@@ -60,3 +60,4 @@ class acessoController extends CI_Controller {
     }
 
 }
+
