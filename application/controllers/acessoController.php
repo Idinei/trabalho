@@ -58,6 +58,13 @@ class acessoController extends CI_Controller {
         }
         $this->load->view('acessoView');
     }
+    
 
 }
 
+//http://imasters.com.br/infra/seguranca/dicas-de-seguranca-em-codeigniter/
+/*function username_unique($usu){
+        $this->load->library('form_validation');
+        $result = $this->db->get_where()
+                
+    }*/
