@@ -50,11 +50,11 @@
                         
                         $this->table->set_heading('Conta', 'Agencia', 'Data_criação', 'Senha', 'Saldo', 'Ações');
                         foreach ($contas as $p) {
-                            $link_alterar = anchor("contaController/alterar_conta/$p->id", '<img src="http://127.0.0.1/codeigniter/application/views/img/edit.png">', 'title="Editar"');
-                            $link_eliminar = anchor("contaController/eliminar_conta/$p->id", '<img src="http://127.0.0.1/codeigniter/application/views/img/del.png">', 'title="Excluir"');
-                            $link_lancamento = anchor("lancamentoController/index/$p->id", '<img src="http://127.0.0.1/codeigniter/application/views/img/dinheiro.png">', 'title="Listar Lançamento"');
-                            $link_movimento = anchor("lancamentoController/atualizaMovimento/$p->id", '<img src="http://127.0.0.1/codeigniter/application/views/img/atu.png">', 'title="Atualiza Movimento"');
-                            $link_extrato = anchor("lancamentoController/index2/$p->id", '<img src="http://127.0.0.1/codeigniter/application/views/img/rel.png">', 'title="Extrato de Conta"');
+                            $link_alterar = anchor("contaController/alterar_conta/$p->id", '<img src="http://127.0.0.1/homebankxx/application/views/img/edit.png">', 'title="Editar"');
+                            $link_eliminar = anchor("contaController/eliminar_conta/$p->id", '<img src="http://127.0.0.1/homebankxx/application/views/img/del.png">', 'title="Excluir"');
+                            $link_lancamento = anchor("lancamentoController/index/$p->id", '<img src="http://127.0.0.1/homebankxx/application/views/img/dinheiro.png">', 'title="Listar Lançamento"');
+                            $link_movimento = anchor("lancamentoController/atualizaMovimento/$p->id", '<img src="http://127.0.0.1/homebankxx/application/views/img/atu.png">', 'title="Atualiza Movimento"');
+                            $link_extrato = anchor("lancamentoController/index2/$p->id", '<img src="http://127.0.0.1/homebankxx/application/views/img/rel.png">', 'title="Extrato de Conta"');
 
                             $data_criacao = implode('/', array_reverse(explode('-', $p->data_criacao)));
                             $this->table->add_row($p->id, $p->agencia, $data_criacao, $p->senha, $p->saldo, "$link_alterar $link_eliminar $link_lancamento $link_extrato $link_movimento");
@@ -64,7 +64,7 @@
                         
                         <div id="menu">
                             <ul class="nav nav-tabs nav-stacked"> 
-                                <li><?php echo anchor("contaController/novo", '<img src="http://127.0.0.1/homebank/application/views/img/novo.png">'); ?></li>                       
+                                <li><?php echo anchor("contaController/novo", '<img src="http://127.0.0.1/homebankxx/application/views/img/novo.png">'); ?></li>                       
                             </ul>
                             
                         </div>

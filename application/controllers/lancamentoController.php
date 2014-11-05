@@ -28,7 +28,7 @@ class lancamentoController extends CI_Controller {
             'lancamentos' => $this->lancamentoModel->listarTudo(numRegPagina2(), $pagina),
             'paginacao' => criaPaginacao(
                     'lancamentoController', $this->lancamentoModel->contarTudo(), $this->uri->segment(3), 4),
-            'titulo' => "Lista de lançamentos");
+            'titulo' => "Lista de Extratos");
         $this->load->view('relatorioView', $dados);
     }
 
@@ -61,13 +61,13 @@ class lancamentoController extends CI_Controller {
         $this->load->model('contaModel');
         $this->load->model('lancamentoModel');
         $conta = $this->contaModel->buscar_pelo_codigo($inf['conta_codigo']);
-        
-            if ($this->lancamentoModel->inserir($inf)) {
-                $inf['acao'] = 'I';
-                $this->alterarSaldo($inf);
-                $this->session->set_flashdata('msg', 'Criado com sucesso!');
-            }
-        
+
+        if ($this->lancamentoModel->inserir($inf)) {
+            $inf['acao'] = 'I';
+            $this->alterarSaldo($inf);
+            $this->session->set_flashdata('msg', 'Criado com sucesso!');
+        }
+
         redirect('lancamentoController/index/' . $_POST['conta_codigo']);
     }
 
@@ -160,17 +160,16 @@ class lancamentoController extends CI_Controller {
         $this->form_validation->set_rules('at_lancamento', 'at_lancamento', 'trim');
         if ($this->form_validation->run()) {
             $conta = $this->contaModel->buscar_pelo_codigo($_POST['conta_codigo']);
-            
-                $_POST['id'] = $codigo;
-                $_POST['data'] = implode('-', array_reverse(explode('/', $_POST['data'])));
 
-                if ($this->lancamentoModel->alterar($_POST)) {
-                    $_POST['acao'] = 'I';
-                    $this->alterarSaldo($_POST);
-                    $this->session->set_flashdata('msg', 'Alterado com sucesso!');
-                    redirect('lancamentoController/index/' . $_POST['conta_codigo']);
-                }
-            
+            $_POST['id'] = $codigo;
+            $_POST['data'] = implode('-', array_reverse(explode('/', $_POST['data'])));
+
+            if ($this->lancamentoModel->alterar($_POST)) {
+                $_POST['acao'] = 'I';
+                $this->alterarSaldo($_POST);
+                $this->session->set_flashdata('msg', 'Alterado com sucesso!');
+                redirect('lancamentoController/index/' . $_POST['conta_codigo']);
+            }
         }
         $this->load->view('lancamentoUpdateView', $dados);
     }
@@ -193,6 +192,10 @@ class lancamentoController extends CI_Controller {
             }
         }
         redirect('lancamentoController/index/' . $lanc->conta_codigo);
+    }
+
+    function filtrarExtrato() {
+       
     }
 
 }
